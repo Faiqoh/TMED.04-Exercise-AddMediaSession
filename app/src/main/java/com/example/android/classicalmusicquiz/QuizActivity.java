@@ -16,6 +16,8 @@
 
 package com.example.android.classicalmusicquiz;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -181,7 +183,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mExoPlayer = null;
     }
 
-
     /**
      * The OnClick method for all of the answer buttons. The method uses the index of the button
      * in button array to to get the ID of the sample from the array of question IDs. It also
@@ -261,7 +262,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     /**
      * Release the player when the activity is destroyed.
      */
@@ -272,12 +272,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         releasePlayer();
     }
 
-
-    // ExoPlayer Event Listeners
-
     @Override
     public void onTimelineChanged(Timeline timeline, Object manifest) {
     }
+
+
+    // ExoPlayer Event Listeners
 
     @Override
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
@@ -304,5 +304,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPositionDiscontinuity() {
+    }
+
+    public static class MediaReceiver extends BroadcastReceiver {
+        public MediaReceiver() {
+
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //MediaButtonReceiver.handleIntent(mMediaSession, intent);
+        }
     }
 }
